@@ -3,5 +3,9 @@
 def Square(x):
     return x*x;
 
-for i in range(1,10,2):
-    print(Square(i));
+def main():
+    for i in range(1,10,2):
+        print("{} squared equals {}".format(i,Square(i)));
+
+if __name__ =="main":
+    main();
