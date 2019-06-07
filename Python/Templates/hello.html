@@ -4,4 +4,11 @@
 {% endblock %}
 {% block body %}
     Hello {{name}}!
+
+    <ul>
+        {% for note in notes %}
+            <li>{{note}}</li>
+        {% endfor%}
+    </ul>
+
 {%endblock%}
