@@ -1,35 +1,19 @@
-import datetime
-from flask  import Flask, render_template, request, session
-from flask_session import Session
+import os
+
+import requests
+from flask import Flask, jsonify, render_template, request
+
+from flask_socketio import SocketIO, emit
 
 app = Flask(__name__)
+app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
+socketio = SocketIO(app)
 
-app.config["SESSION_PERMANENT"] = False
-app.config["SESSION_TYPE"] = "filesystem"
-Session(app) 
-
-notes = [] 
-
-@app.route("/", methods=["GET","POST"])
+@app.route("/")
 def index():
+    return render_template("index.html")
 
-    if session.get("notes") is None:
-        session["notes"] = []
-    if request.method=="POST":
-        note = request.form.get("note")
-        session["notes"].append(note)
-
-    return  render_template("index.html", notes = session["notes"])
-    
-@app.route("/more")
-def  more():
-    return render_template("more.html")
-
-@app.route("/hello",methods=["GET","POST"])
-def hello ():
-    if request.method =="GET":
-        return("Plaese enter the form instead")
-    else:
-        name = request.form.get("name")
-        return render_template("hello.html",name = name)
-
+socketio.on("submit vote")
+def vote(data):
+    selection = data["selection"]
+    emit("announce vote",{"selection":selection},broadcast = True)
