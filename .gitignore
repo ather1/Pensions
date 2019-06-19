@@ -4,3 +4,4 @@ C:\code\Pensions\CS50 Lectures\*
 **/__pycache__
 package-lock.json
 settings.json 
+*.pyd

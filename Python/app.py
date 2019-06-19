@@ -15,5 +15,6 @@ def index():
 
 socketio.on("submit vote")
 def vote(data):
+    print(data)
     selection = data["selection"]
     emit("announce vote",{"selection":selection},broadcast = True)
