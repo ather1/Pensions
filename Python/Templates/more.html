@@ -1,12 +1,8 @@
-<!DOCTYPE html>
-<html>
-    <header>
-        <title>
-            More
-        </title>
-    </header>
-
-    <body>
-        This is the more 
-    </body>
-</html>
+{% extends "layout.html" %}
+{%block heading%}
+    This is the more page
+{%endblock%}
+{%block body %}
+    This is some text you could have in the more page
+    <a href="{{url_for('index')}}">Go Back</a>
+{%endblock%}
