@@ -5,3 +5,5 @@ C:\code\Pensions\CS50 Lectures\*
 package-lock.json
 settings.json 
 *.pyd
+**/mypython
+

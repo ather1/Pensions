@@ -1,6 +1,6 @@
 import os
 
-import requests
+import request
 from flask import Flask, jsonify, render_template, request
 
 from flask_socketio import SocketIO, emit
@@ -13,8 +13,11 @@ socketio = SocketIO(app)
 def index():
     return render_template("index.html")
 
-socketio.on("submit vote")
+
+@socketio.on("submit vote")
 def vote(data):
     print(data)
     selection = data["selection"]
     emit("announce vote",{"selection":selection},broadcast = True)
+
+    

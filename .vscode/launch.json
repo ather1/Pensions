@@ -5,12 +5,12 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Python: Flask",
+            "name": "Pensions: Flask",
             "type": "python",
             "request": "launch",
             "module": "flask",
             "env": {
-                "FLASK_APP": "app.py",
+                "FLASK_APP": ".\\python\\app.py",
                 "FLASK_ENV": "development",
                 "FLASK_DEBUG": "0"
             },
@@ -22,12 +22,21 @@
             "jinja": true
         },
         {
-            "name": "Python: Current File",
+            "name": "Python: Flask CS50",
             "type": "python",
             "request": "launch",
-            "program": "${file}",
-            "console": "integratedTerminal",
-            "stopOnEntry": true
+            "module": "flask",
+            "env": {
+                "FLASK_APP": ".\\CS50 Lectures\\src5\\vote0\\app.py",
+                "FLASK_ENV": "development",
+                "FLASK_DEBUG": "0"
+            },
+            "args": [
+                "run",
+                "--no-debugger",
+                "--no-reload"
+            ],
+            "jinja": true
         }
     ]
 }
