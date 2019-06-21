@@ -9,15 +9,17 @@ app = Flask(__name__)
 app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
 socketio = SocketIO(app)
 
+votes = {"yes":0, "no":0,"maybe":0}
+
 @app.route("/")
 def index():
-    return render_template("index.html")
+    return render_template("index.html",votes=votes)
 
 
 @socketio.on("submit vote")
 def vote(data):
-    print(data)
     selection = data["selection"]
-    emit("announce vote",{"selection":selection},broadcast = True)
+    votes[selection] += 1    
+    emit("announce vote",votes,broadcast = True)
 
     
