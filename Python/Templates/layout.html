@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html>
-    <header>
-        <title>Using Layout</title>
-    </header>
+    <head>
+        <title>My Webpage</title>
+    </head>
     <body>
-        <h1>{% block heading %}{% endblock %}</h1>
+        <ul id="nav">
+            <li><a href="{{url_for('first')}}">First Page</a></li>
+            <li><a href="{{url_for('second')}}">second Page</a></li>
+            <li><a href="{{url_for('third')}}">third Page</a></li>
+        </ul>
+        <hr>
         {% block body %}
         {% endblock %}
-
     </body>
 </html>
