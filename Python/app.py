@@ -4,6 +4,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def first():
+    print("Hello")
     return render_template("first.html")
 
 @app.route("/second")
