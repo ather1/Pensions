@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Posts</title>
+
+        <script>
+
+
+            const  quantity = 20 ; 
+            var counter =0 ;   
+            console.log('before event domcontentloaded')
+            document.addEventListener('DOMContentLoaded',load);
+            console.log('after domcontentloaded')
+            window.onscroll = () =>{
+                console.log('entered the code for onscroll')
+                if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+                    load();
+                    
+                }
+            }
+
+            function load(){
+                const  start  = counter;
+                const end =  start + quantity - 1;
+                counter = end + 1;
+                console.log('loaded')
+                const request = new XMLHttpRequest();
+                request.open('POST','/posts');
+                request.onload = () =>{
+                    const data = JSON.parse(request.responseText);
+                    data.forEach(add_post);
+                }; 
+
+                const data =  new FormData();
+                data.append('start',start)
+                data.append('end',end) 
+                console.log('just before send')
+                request.send(data);
+
+            };
+            
+
+            function add_post(contents){
+                //create a new post
+                const  post = document.createElement('div');
+                post.className = 'Post';
+                post.innerHTML = contents;
+
+                document.querySelector('#posts').append(post);    
+
+
+            };
+
+        </script>
+    </head>
+
+    <body>
+        <div id ="posts">
+
+        </div>
+    </body>
+</html>
