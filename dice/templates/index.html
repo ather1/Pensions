@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Roll Dice</title>
+        <style>
+                li {
+                    line-height: 30px;
+                }
+                img {
+                    height: 30px;
+                    vertical-align: middle;
+                }
+            </style>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
+        <script id = "result" type="text/x-handlebars-template">
+            <li>
+                You Rolled:
+                {{#each values}}
+                <img alt={{this}} title="{{this}}" src="img/{{this}}.png">
+                {{/each}}
+                (Total :{{total}})
+            </li>       
+        </script>
+        <script>
+
+
+            const template = Handlebars.compile(document.querySelector('#result').innerHTML);    
+           
+
+            document.addEventListener('DOMContentLoaded',() => {
+                document.querySelector('#dice-roller').onclick = () => {
+                    counter = parseInt(document.querySelector('#counter').value);
+                    const rolls= [];
+                    var total = 0;
+
+
+                    for(let i=0 ; i<counter ;i++){
+                        const  roll = Math.floor((Math.random()*6) + 1 );
+                        rolls.push(roll);
+                        total+= roll;
+                    }
+                    
+
+                    const   content =  template({'values':rolls,'total':total});
+                    document.querySelector('#rolls').innerHTML += content;
+
+                };
+            });
+
+        </script>
+    </head>
+    <body>
+        <input id='counter' min= 1 placeholder="Enter number of rolls" type="number">
+        <button id='dice-roller'> Roll</button>
+        <ul id ='rolls'></ul>
+
+    </body>
+
+</html>

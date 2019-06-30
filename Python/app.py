@@ -1,20 +1,17 @@
-import os
-
-import requests
-from flask import Flask, jsonify, render_template, request
-
-from flask_socketio import SocketIO, emit
+from flask import Flask, render_template
 
 app = Flask(__name__)
-app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
-socketio = SocketIO(app)
 
 @app.route("/")
-def index():
-    return render_template("index.html")
+def first():
+    print("Hello")
+    return render_template("first.html")
 
-socketio.on("submit vote")
-def vote(data):
-    print(data)
-    selection = data["selection"]
-    emit("announce vote",{"selection":selection},broadcast = True)
+@app.route("/second")
+def second():
+    return render_template("second.html")
+    
+@app.route("/third")
+def third():
+    return render_template("third.html")
+    

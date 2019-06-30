@@ -5,8 +5,9 @@ C:\code\Pensions\CS50 Lectures\*
 package-lock.json
 settings.json 
 *.pyd
-*.py
+**/mypython
 **/.venv
-**/venv1
 **/CS50
+**/venv1
+
 
