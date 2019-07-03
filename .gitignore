@@ -6,4 +6,8 @@ package-lock.json
 settings.json 
 *.pyd
 **/mypython
+**/.venv
+**/CS50
+**/venv1
+
 
