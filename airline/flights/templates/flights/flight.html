@@ -1,16 +1,23 @@
-<!DOCTYPE html>
-<html>
+{% extends ".\flights\base.html"%}
 
-<head>
-    <Title>Flights</Title>
-</head>
 
-<body>
-    <h1>Flight {{flight.id}}</h1>
+{% block title %}
+    Flight {{flight.id}}
+{% endblock %}
 
+{% block body %}
+    <h1>Flight</h1>
     <ul>
-        <li> Origin {{flight.origin}}</li>
-        <li> Destination {{flight.destination}}</li>
+        <!-- Flight  -->
+        <li>Flight No: {{flight.id}}</li>
+        <!-- Origin -->
+        <li>Origin : {{flight.origin}}</li>
+        <!-- Destination -->
+        <li>Destination : {{flight.destination}}</li>
+        <!-- duration -->
+        <li>Duration : {{flight.duration}}</li>
+        <!-- valid  -->
+        <li>Valid : {{flight.isValidFlight}}</li>
     </ul>
 
     <h2>Passengers</h2>    
@@ -21,13 +28,11 @@
         <li>None found</li>
     {% endfor %}
     </ul>
-    
     <h2>Add A Passenger</h2>
 
     {% if non_passengers %}
     <form action ="{% url 'book' flight.id %}" method ="POST">{% csrf_token %}
         <select name = "passenger">
-            
             {% for passenger in non_passengers %}
                 <option value = "{{ passenger.id  }}">{{passenger}}</option>
             {% endfor %}
@@ -39,6 +44,6 @@
     {% endif %}
     <a href="{% url 'index' %}">Back to full listing</a>
  
-</body>
+{% endblock %}
 
 </html>

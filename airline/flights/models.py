@@ -19,14 +19,25 @@ class Flight(models.Model):
     def  __str__(self):
         return  f"Flight {self.id} - {self.origin} to {self.destination}"
 
+    def isValidFlight(self) :
+        return self.duration > 10 and self.origin != self.destination       
+
+
+
 class Passenger(models.Model):
     first =  models.CharField(max_length=64)
     last = models.CharField(max_length=64)
 
     flights = models.ManyToManyField(Flight,blank=True,related_name="passengers")
 
+    def rubbishfuntion(self) :
+        print("a rubbish function")
+
     def __str__(self):
+        self.rubbishfuntion
         return f"{self.first} {self.last}"
+
+   
 
 
 
