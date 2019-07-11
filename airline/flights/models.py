@@ -30,11 +30,7 @@ class Passenger(models.Model):
 
     flights = models.ManyToManyField(Flight,blank=True,related_name="passengers")
 
-    def rubbishfuntion(self) :
-        print("a rubbish function")
-
     def __str__(self):
-        self.rubbishfuntion
         return f"{self.first} {self.last}"
 
    
